@@ -16,7 +16,7 @@ int main() {
     printf("Senha:\n");
     scanf("%s", senha);
 
-    while(strcmp(usuario,"admin") != 0 && strcmp(senha,"1234") != 0){
+    while(strcmp(usuario,"admin") != 0 || strcmp(senha,"1234") != 0){
         printf("Usuário ou senha estão incorretos\n");
 
         printf("Usuário:\n");

@@ -3,17 +3,21 @@
 #include <locale.h>
 #include <string.h>
 
-char usuarioRegistrado [50];
-char senhaRegistrada [50];
+void Limpartela (){
+    system("cls");
 
-
-void salvarUsuario (char usua [50] , char senha [50]){
-    strcpy(usuarioRegistrado, usua);
-    strcpy(senhaRegistrada, senha);
 
 }
 
-void Registro (){
+
+
+void salvarUsuario (char destinoUsua[50], char destinoSenha[50], const char origemUsua[50], const char origemSenha[50]){
+    strcpy(destinoUsua, origemUsua);
+    strcpy(destinoSenha, origemSenha);
+
+}
+
+void Registro (char usua[50], char senha [50]){
     char Nomeusua [50];
     char Usuasenha [50];
 
@@ -25,14 +29,12 @@ void Registro (){
     printf("Registro de usuário '%s' salvo com sucesso\n", Nomeusua);
     printf("Registro de senha '%s' salvo com sucesso\n", Usuasenha);
 
-    salvarUsuario (Nomeusua, Usuasenha);
+    salvarUsuario (usua,senha, Nomeusua, Usuasenha);  
 
-
-    
-    
 }
 
-void Conecte (){
+void Conecte (const char usua[50], const char senha[50]){
+    Limpartela();
 
     char usuaDigi[50];
     char senhaDigi[50];
@@ -44,8 +46,10 @@ void Conecte (){
     printf("Senha\n");
     scanf("%s",senhaDigi);
 
-    while (strcmp(usuaDigi, usuarioRegistrado) !=0 || strcmp(senhaDigi, senhaRegistrada) !=0){
+    while (strcmp(usuaDigi, usua) !=0 || strcmp(senhaDigi, senha) !=0){
         printf("Usuário ou senha estão incorretos\n");
+
+        Limpartela();
 
         printf("Usuário:\n");
         scanf("%s",usuaDigi);
@@ -53,14 +57,20 @@ void Conecte (){
         scanf("%s",senhaDigi);
     }
 
-    printf("Acesso Permitido");
+    printf("Acesso Permitido\n");
 
 }
 
-int main (){
+int Login (char usua[50], char senha[50]){
     setlocale(LC_ALL,"portuguese");
+    
+    Limpartela();
 
-    int opcoes; 
+    int opcoes;
+    int cont = 1; 
+
+    while (cont){
+    Limpartela();
 
     printf("-----------------HOME-----------------\n");
     printf("1-Registre-se\n");
@@ -70,17 +80,35 @@ int main (){
 
     switch(opcoes){
         case 1:
-         Registro();
-        case 2:
-        Conecte();
-        case 3:
+        Registro(usua,senha);
         break;
-        printf("Saindo do Programa");
+        case 2:
+        Conecte(usua,senha);
+        return 1;
+        case 3:
+        printf("Saindo do Programa\n");
+        return 0;;
         break;
         default:
-        printf("Opção Inválida");
+        printf("Opção Inválida\n");
     }
-    
-
+}
+return 0;
 
 }
+
+
+int main(){
+    setlocale(LC_ALL,"portuguese");
+    Limpartela();
+
+    char usuarioRegistrado [50];
+    char senhaRegistrada [50];
+    
+    Login(usuarioRegistrado,senhaRegistrada); 
+
+    printf("---------MENU---------");
+
+
+
+    }
