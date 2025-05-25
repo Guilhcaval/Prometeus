@@ -6,7 +6,6 @@
 void Limpartela (){
     system("cls");
 
-
 }
 
 
@@ -21,14 +20,13 @@ void Registro (char usua[50], char senha [50]){
     char Nomeusua [50];
     char Usuasenha [50];
 
+    Limpartela();
+
     printf("Digite seu nome de usuário:\n");
     scanf("%s", Nomeusua);
     printf("Digite sua senha:\n");
     scanf("%s", Usuasenha);
-
-    printf("Registro de usuário '%s' salvo com sucesso\n", Nomeusua);
-    printf("Registro de senha '%s' salvo com sucesso\n", Usuasenha);
-
+    
     salvarUsuario (usua,senha, Nomeusua, Usuasenha);  
 
 }
@@ -59,6 +57,8 @@ void Conecte (const char usua[50], const char senha[50]){
 
     printf("Acesso Permitido\n");
 
+
+
 }
 
 int Login (char usua[50], char senha[50]){
@@ -87,27 +87,32 @@ int Login (char usua[50], char senha[50]){
         return 1;
         case 3:
         printf("Saindo do Programa\n");
-        return 0;;
+        return 0;
         break;
         default:
         printf("Opção Inválida\n");
     }
 }
 return 0;
-
 }
 
 
 int main(){
     setlocale(LC_ALL,"portuguese");
-    Limpartela();
-
+    
     char usuarioRegistrado [50];
     char senhaRegistrada [50];
-    
-    Login(usuarioRegistrado,senhaRegistrada); 
 
-    printf("---------MENU---------");
+    if (!Login(usuarioRegistrado,senhaRegistrada)) {
+    return 0;
+    }
+
+    printf("---------MENU---------\n");
+
+    printf("1. Cadastrar carro\n");
+    printf("2. Listar carros disponíveis\n");
+    printf("Escolha uma opção: ");
+    
 
 
 
